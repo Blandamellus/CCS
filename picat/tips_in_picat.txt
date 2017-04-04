@@ -1,0 +1,42 @@
+/*
+Picat> [[b,a,c,o,o,o,o]] = X 
+X = [[b,a,c,o,o,o,o]]
+yes
+Picat> [[b,a,c,o,o,o,o]] = [FX]  
+FX = [b,a,c,o,o,o,o]
+yes
+Picat> [[b,a,c,o,o,o,o]] = [[FX]]
+NO
+*/
+    % printf("\n Posicao inicial: %w ", X),
+    
+    
+/*
+From Neng-Fa:
+ I think you messed up input and output arguments. 
+ Only input arguments can be written in head patterns;
+  outputs must be explicitly written using unification. 
+  For example, reverse/2 should be defined as follows:
+
+reverse([],R) => R=[].
+reverse([A|B], Inverted) => reverse(B, X),
+                               append(X, [A], Inverted).
+					  					  
+***********************************************************/
+I was testing the struct function arity(), but i forgot to put the name of struct. 
+When i tested the function, It came with it:
+
+Picat> N = $(1,2,3,4,5), arity(N) = Aridade.
+N = (1,2,3,4,5)
+Aridade = 2
+yes
+
+Aridade shouldn't be zero ou five?
+
+It's designed this way (inherited from Prolog), not an error. 
+A tuple of the form (1,2,3,4,5) is the same as (1, (2, (3, (4, 5)))). 
+That's why its arity is 2, not 5. In contrast, the array {1,2,3,4,5} 
+has arity 5.
+
+Cheers,
+Neng-Fa
